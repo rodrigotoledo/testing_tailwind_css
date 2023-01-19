@@ -71,8 +71,14 @@ gem 'pry'
 
 gem 'faker', '~> 3.1'
 
-gem "stimulus_reflex", "= 3.5.0.pre8"
+gem 'stimulus_reflex', '= 3.5.0.pre8'
 
-gem "redis", "~> 5.0"
+gem 'redis', '~> 5.0'
 
-gem "devise", "~> 4.8"
+gem 'bullet'
+gem 'devise', '~> 4.8'
+gem 'dotenv'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'pg'
+gem 'rails_heroicon'
+gem 'ruby-openai'

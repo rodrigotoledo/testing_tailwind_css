@@ -1,19 +1,39 @@
+    
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestingTailwindCss</title>
+    <title>Application</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <div class="bg-gray-50 h-screen overflow-y-scroll hide-scrollbar">
+      <header class="sticky top-0 z-50 bg-white shadow-sm px-10 w-full">
+        <!-- left content-->
+        <div class="relative flex items-center h-20 my-auto">
+          <div class="relative items-center hidden lg:inline-grid cursor-pointer"><%= link_to "Project Name", root_path, class: "text-gray-400" %></div>
+          <div class="relative items-center lg:hidden w-10 flex-shrink-0 cursor-pointer"><%= link_to "Project Name", root_path, class: "text-gray-400" %></div>
+
+          <div class="flex items-center space-x-2 border-2 rounded-full px-2 ml-10">
+            <%= button_to heroicon("home", variant: "solid", class: "h-6 text-gray-400 cursor-pointer hover:scale-125 transition-all duration-150 ease-out"), root_path, method: :delete, alt: "profile picture", class: "h-10 rounded-full cursor-pointer" %>
+            <% if current_user %>
+              <%= button_to heroicon("arrow-right-on-rectangle", variant: "solid", class: "h-6 text-gray-400 cursor-pointer hover:scale-125 transition-all duration-150 ease-out"), destroy_user_session_path, method: :delete, alt: "profile picture", class: "h-10 rounded-full cursor-pointer",  data: { turbo: "false" } %>
+            <% else %>
+              <%= link_to heroicon("user-plus", variant: "solid", class: "h-6 text-gray-400 cursor-pointer hover:scale-125 transition-all duration-150 ease-out"), new_user_registration_path, class: "link" %>
+              <%= link_to heroicon("user-circle", class: "h-6 text-gray-400 cursor-pointer hover:scale-125 transition-all duration-150 ease-out"), new_user_session_path, class: "link" %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+      <main class="container mx-auto p-10">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
