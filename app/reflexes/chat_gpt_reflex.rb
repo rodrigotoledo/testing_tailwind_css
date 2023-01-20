@@ -9,8 +9,10 @@ class ChatGptReflex < ApplicationReflex
     client = OpenAI::Client.new(access_token: ENV.fetch('GPT_KEY', nil))
     response = client.completions(
       parameters: {
-        model: 'text-davinci-001',
-        prompt: question_params[:q]
+        model: 'text-davinci-003',
+        prompt: question_params[:q],
+        temperature: 0.7,
+        max_tokens: 256
         # max_tokens: 5
       }
     )
