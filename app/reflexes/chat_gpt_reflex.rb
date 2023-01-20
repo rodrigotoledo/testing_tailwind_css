@@ -5,16 +5,21 @@ require 'ruby/openai'
 class ChatGptReflex < ApplicationReflex
   delegate :uuid, to: :connection
 
-  def answer
+  def submit
     client = OpenAI::Client.new(access_token: ENV.fetch('GPT_KEY', nil))
     response = client.completions(
       parameters: {
         model: 'text-davinci-001',
-        prompt: element.value
+        prompt: question_params[:q]
         # max_tokens: 5
       }
     )
     morph '#gpt_answer', JSON.parse(response.body)['choices'].pluck('text').to_sentence
-    # morph '#gpt_answer', response['choices'].pluck('text').to_sentence
+  end
+
+  private
+
+  def question_params
+    params.require(:question).permit(:q)
   end
 end

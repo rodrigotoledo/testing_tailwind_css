@@ -7,11 +7,12 @@
     <h1 class="font-bold text-4xl">ChatGPT</h1>
   </div>
   
-  <div class="my-2">
+  <%=form_for :question, url: root_path, data: { reflex: "submit->ChatGpt#submit"} do |form| %>
     <h2 class="font-bold text-2xl">Lets talk with GPT</h2>
-    <%=text_field_tag :q, params[:q], placeholder: 'Ask something...', data: {reflex: "keyup->ChatGpt#answer"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%=form.text_field :q, placeholder: 'Ask something...', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 my-2 w-full" %>
+    <%=form.submit "Submit your question", class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer' %>
     <div id="gpt_answer"></div>
-  </div>
+  <% end %>
 
   <div class="mt-4 flex justify-between items-center">
     <h1 class="font-bold text-4xl">Movies</h1>
