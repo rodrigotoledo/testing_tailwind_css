@@ -11,12 +11,14 @@ class ChatGptReflex < ApplicationReflex
       parameters: {
         model: 'text-davinci-003',
         prompt: question_params[:q],
-        temperature: 0.7,
-        max_tokens: 256
+        temperature: 0.9,
+        max_tokens: 512
         # max_tokens: 5
       }
     )
-    morph '#gpt_answer', JSON.parse(response.body)['choices'].pluck('text').to_sentence
+    morph '#gpt_answer',
+          render('answers/response',
+                 locals: { response: JSON.parse(response.body)['choices'].pluck('text').to_sentence })
   end
 
   private
