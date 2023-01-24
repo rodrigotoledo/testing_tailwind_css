@@ -18,6 +18,23 @@
     <h1 class="font-bold text-4xl">Movies</h1>
   </div>
 
+  <div class="mt-4 flex justify-between items-center">
+    <h2 class="font-bold text-2xl">Creating a movie using broadcast</h2>
+  </div>
+
+  <%=render partial: "movies/form", locals: {movie: Movie.new}%>
+
+  <hr class="my-2" />
+
+  <div class="mt-4 flex justify-between items-center">
+    <h2 class="font-bold text-2xl">Creating a movie using stimulus reflex</h2>
+  </div>
+
+  <div id="stimulus_form">
+    <%=render partial: "movies/stimulus_form", locals: {movie: Movie.new}%>
+  </div>
+
+  <hr class="my-2" />
   <%=render partial: "movies/form", locals: {movie: Movie.new}%>
 
   <div class="my-2">
@@ -29,4 +46,4 @@
   <div id="movies" class="min-w-full">
     <%= render @movies %>
   </div>
-</div>
+</hr>
