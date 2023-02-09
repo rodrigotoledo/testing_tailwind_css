@@ -21,4 +21,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  url: <%= ENV["DATABASE_URL"] %>
+    adapter: postgresql
+    encoding: utf8
+    pool: 5
+    host: dpg-cfif2g9a6gdq1k7r3mf0-a
+    username: postgrestesting_ror
+    database: testing_ror
+    password: <%= ENV['DB_RENDER'] %>
