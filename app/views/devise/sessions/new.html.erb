@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false } }) do |f| %>
   <div class="flex flex-row items-center justify-center lg:justify-start">
     <p class="text-lg mb-0 mr-4">Login with credentials</p>
   </div>
