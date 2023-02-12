@@ -1,0 +1,12 @@
+<%=turbo_frame_tag dom_id(live_movie) do %>
+  <div class="grid grid-cols-5">
+    <div class="font-bold p-1 border"><%= live_movie.title %></div>
+    <div class="font-bold p-1 border"><%= live_movie.artist.name %></div>
+    <div class="font-bold p-1 border"><%= live_movie.short_description %></div>
+    <div class="font-bold p-1 border"><%= live_movie.year %></div>
+    <div class="font-bold p-1 border">
+      <%= link_to 'Edit', edit_live_movie_path(live_movie), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Destroy', live_movie_path(live_movie), method: :delete, data: {turbo_method: :delete}, class: "mt-2 rounded-lg py-3 px-5 bg-red-100 font-medium" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<%=turbo_frame_tag dom_id(@live_movie) do %>
+<%= form_with(model: @live_movie, class: "contents") do |form| %>
+  <% if @live_movie.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(@live_movie.errors.count, "error") %> prohibited this live_movie from being saved:</h2>
+
+      <ul>
+        <% @live_movie.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-5">
+    <div class="font-bold p-1 bg-slate-100 border"><%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %></div>
+    <div class="font-bold p-1 bg-slate-100 border"><%= form.collection_select :artist_id, Artist.all, :id, :name, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %></div>
+    <div class="font-bold p-1 bg-slate-100 border"><%= form.text_field :short_description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %></div>
+    <div class="font-bold p-1 bg-slate-100 border"><%= form.number_field :year, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %></div>
+    <div class="font-bold p-1 bg-slate-100 border">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+      <%= link_to 'Cancel', live_movies_path, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
+<% end %>
+<% end %>

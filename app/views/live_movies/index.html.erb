@@ -1,0 +1,25 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="font-bold text-4xl">Live movies</h1>
+    <%= link_to 'New live movie', new_live_movie_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div class="grid grid-cols-5">
+    <div class="font-bold p-1 bg-slate-100 border">Title</div>
+    <div class="font-bold p-1 bg-slate-100 border">Artist</div>
+    <div class="font-bold p-1 bg-slate-100 border">Short Description</div>
+    <div class="font-bold p-1 bg-slate-100 border">Year</div>
+    <div class="font-bold p-1 bg-slate-100 border">Actions</div>
+  </div>
+
+
+  <%=turbo_stream_from :movies %>
+  <% @live_movies.each do |live_movie| %>
+    <%= render partial: 'live_movie', locals: {live_movie: live_movie} %>
+  <% end %>
+
+</div>
